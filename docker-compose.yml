@@ -1,0 +1,16 @@
+# Frontend only. Run from shopify-frontend: docker compose up -d --build
+# Set NEXT_PUBLIC_API_URL in .env (optional) or when running to point to backend (e.g. http://localhost:5300).
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:5300}
+    restart: unless-stopped
+    environment:
+      PORT: 5299
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:5300}
+    ports:
+      - "5299:5299"
