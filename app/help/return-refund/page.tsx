@@ -42,6 +42,9 @@ export default function ReturnRefundChoicePage() {
         <p className="mt-2 text-[var(--muted)]">
           Choose what you need below.
         </p>
+        <p className="mt-2 text-sm text-[var(--muted)]">
+          Want to <strong className="text-[var(--foreground)]">exchange</strong> an item? Choose Return or Refund and in the reason field mention which item you’re returning and what you’d like instead. We’ll process the return/refund and arrange the new item with you (e.g. via payment link or COD).
+        </p>
       </motion.div>
 
       <ul className="space-y-4" role="list">
