@@ -6,8 +6,7 @@ import Link from "next/link";
 import { PageContainer } from "@/components/ui/PageContainer";
 import { Button } from "@/components/ui/Button";
 import { Chat } from "@/components/chat/Chat";
-
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5300";
+import { getApiBase } from "@/lib/api";
 
 interface HelpRequest {
   id: string;
@@ -78,7 +77,7 @@ export default function AdminRequestDetailPage() {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch(`${API_BASE}/api/help-requests/${requestId}`, {
+      const res = await fetch(`${getApiBase()}/api/help-requests/${requestId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.status === 401) {
@@ -100,7 +99,7 @@ export default function AdminRequestDetailPage() {
   };
 
   const callAdminApi = async (path: string, init?: RequestInit) => {
-    const res = await fetch(`${API_BASE}${path}`, {
+    const res = await fetch(`${getApiBase()}${path}`, {
       ...(init ?? {}),
       headers: {
         ...(init?.headers ?? {}),

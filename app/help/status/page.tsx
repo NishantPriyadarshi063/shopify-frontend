@@ -5,8 +5,7 @@ import Link from "next/link";
 import { PageContainer } from "@/components/ui/PageContainer";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
-
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5300";
+import { getApiBase } from "@/lib/api";
 
 interface StatusResponse {
   id: string;
@@ -42,7 +41,7 @@ export default function StatusPage() {
         order_number: orderNumber.trim(),
         email: email.trim(),
       });
-      const res = await fetch(`${API_BASE}/api/help-requests/status?${params.toString()}`);
+      const res = await fetch(`${getApiBase()}/api/help-requests/status?${params.toString()}`);
       const data = await res.json();
 
       if (!res.ok) {

@@ -3,8 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
-
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5300";
+import { getApiBase } from "@/lib/api";
 
 interface ChatMessage {
   id: string;
@@ -54,7 +53,7 @@ export function Chat({ requestId, customerEmail, adminToken, onNewMessage }: Cha
     const params = new URLSearchParams();
     if (isCustomer) params.set("email", customerEmail!);
     if (isAdmin && adminToken) params.set("token", adminToken);
-    const url = `${API_BASE}/api/chat/${requestId}/stream?${params.toString()}`;
+    const url = `${getApiBase()}/api/chat/${requestId}/stream?${params.toString()}`;
     const eventSource = new EventSource(url);
 
     eventSource.onmessage = (event) => {
@@ -87,7 +86,7 @@ export function Chat({ requestId, customerEmail, adminToken, onNewMessage }: Cha
     setLoading(true);
     setError("");
     try {
-      const url = `${API_BASE}/api/chat/${requestId}/messages${isCustomer ? `?email=${encodeURIComponent(customerEmail!)}` : ""}`;
+      const url = `${getApiBase()}/api/chat/${requestId}/messages${isCustomer ? `?email=${encodeURIComponent(customerEmail!)}` : ""}`;
       const headers: HeadersInit = {};
       if (adminToken) {
         headers.Authorization = `Bearer ${adminToken}`;
@@ -111,7 +110,7 @@ export function Chat({ requestId, customerEmail, adminToken, onNewMessage }: Cha
     setSending(true);
     setError("");
     try {
-      const url = `${API_BASE}/api/chat/${requestId}/messages${isCustomer ? `?email=${encodeURIComponent(customerEmail!)}` : ""}`;
+      const url = `${getApiBase()}/api/chat/${requestId}/messages${isCustomer ? `?email=${encodeURIComponent(customerEmail!)}` : ""}`;
       const headers: HeadersInit = {
         "Content-Type": "application/json",
       };

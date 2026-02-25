@@ -6,7 +6,7 @@ import { PageContainer } from "@/components/ui/PageContainer";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5300";
+import { getApiBase } from "@/lib/api";
 
 interface HelpRequest {
   id: string;
@@ -51,7 +51,7 @@ export default function AdminPage() {
     setLoginError("");
     setLoginLoading(true);
     try {
-      const res = await fetch(`${API_BASE}/api/auth/login`, {
+      const res = await fetch(`${getApiBase()}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -79,7 +79,7 @@ export default function AdminPage() {
     // Call backend to revoke refresh token (best effort, don't block on failure)
     if (refreshToken) {
       try {
-        await fetch(`${API_BASE}/api/auth/logout`, {
+        await fetch(`${getApiBase()}/api/auth/logout`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ refresh_token: refreshToken }),
@@ -106,7 +106,7 @@ export default function AdminPage() {
       if (filterStatus) params.set("status", filterStatus);
       if (searchQuery.trim()) params.set("search", searchQuery.trim());
       const qs = params.toString();
-      const res = await fetch(`${API_BASE}/api/help-requests${qs ? `?${qs}` : ""}`, {
+      const res = await fetch(`${getApiBase()}/api/help-requests${qs ? `?${qs}` : ""}`, {
         headers: { Authorization: `Bearer ${t}` },
       });
       if (res.status === 401) {

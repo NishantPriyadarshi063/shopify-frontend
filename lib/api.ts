@@ -1,4 +1,9 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5300';
+// Direct backend calls: same host as the page, port 5300. Backend has CORS enabled.
+export function getApiBase(): string {
+  if (typeof window !== "undefined")
+    return `${window.location.protocol}//${window.location.hostname}:5300`;
+  return process.env.NEXT_PUBLIC_API_URL || "http://localhost:5300";
+}
 
 export type HelpRequestType = 'cancel' | 'return' | 'refund';
 
@@ -35,7 +40,7 @@ export interface UploadUrlResponse {
 
 export async function checkOrder(orderNumber: string): Promise<CheckOrderResponse> {
   const res = await fetch(
-    `${API_BASE}/api/help-requests/check?order_number=${encodeURIComponent(orderNumber)}`
+    `${getApiBase()}/api/help-requests/check?order_number=${encodeURIComponent(orderNumber)}`
   );
   if (!res.ok) throw new Error('Failed to check order');
   return res.json();
@@ -44,7 +49,7 @@ export async function checkOrder(orderNumber: string): Promise<CheckOrderRespons
 export async function createHelpRequest(
   body: CreateHelpRequestBody
 ): Promise<HelpRequestResponse> {
-  const res = await fetch(`${API_BASE}/api/help-requests`, {
+  const res = await fetch(`${getApiBase()}/api/help-requests`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
@@ -61,7 +66,7 @@ export async function getUploadUrl(
   requestId: string,
   file: { name: string; type?: string; size?: number }
 ): Promise<UploadUrlResponse> {
-  const res = await fetch(`${API_BASE}/api/help-requests/${requestId}/attachments/upload-url`, {
+  const res = await fetch(`${getApiBase()}/api/help-requests/${requestId}/attachments/upload-url`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
