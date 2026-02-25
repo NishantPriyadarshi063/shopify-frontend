@@ -65,7 +65,7 @@ export default function ReturnPage() {
       <Breadcrumb
         items={[
           { label: "Help", href: "/" },
-          { label: "Return order" },
+          { label: "Return order / Exchange" },
         ]}
       />
       <motion.div
@@ -74,10 +74,10 @@ export default function ReturnPage() {
         transition={{ duration: 0.3 }}
       >
         <h1 className="text-2xl font-bold text-[var(--foreground)] sm:text-3xl">
-          Return order
+          Return order / Exchange
         </h1>
         <p className="mt-2 text-[var(--muted)]">
-          Add product photos so we can check the condition and process your return quickly.
+          Return a product or exchange for a different one. Add photos so we can check the condition and process your request quickly.
         </p>
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">

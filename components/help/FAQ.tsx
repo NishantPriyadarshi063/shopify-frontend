@@ -21,6 +21,10 @@ const FAQ_ITEMS = [
     a: "Photos aren’t required but they help us process returns and refunds faster, especially for damaged or incorrect items. You can add up to 5 images when submitting your request.",
   },
   {
+    q: "Can I exchange an item for a different one?",
+    a: "Yes. Choose “Return order” or “Request refund”, fill the form, and in the reason field mention which item you want to return and which product you’d like instead. We’ll refund that item and arrange the new product with you (e.g. payment link, QR, or cash on delivery) via email or phone.",
+  },
+  {
     q: "I have more than one issue with my order. What should I do?",
     a: "Submit one request and describe all issues in the reason field. If you need both a return and a refund, choose the option that fits best and add details in your message. Our team will handle it.",
   },

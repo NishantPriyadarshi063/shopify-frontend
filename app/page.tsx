@@ -14,11 +14,18 @@ const options = [
     icon: "✕",
   },
   {
-    type: "return-refund" as const,
-    title: "Return order / Request refund",
-    description: "Return a product or request a refund. Add a photo so we can check the condition.",
-    href: "/help/return-refund",
+    type: "return" as const,
+    title: "Return order / Exchange",
+    description: "Return a product or exchange for a different one. Add a photo so we can check the condition.",
+    href: "/help/return",
     icon: "↩",
+  },
+  {
+    type: "refund" as const,
+    title: "Request refund",
+    description: "Request a refund. Share details and optional photos if needed.",
+    href: "/help/refund",
+    icon: "₹",
   },
   {
     type: "status" as const,
