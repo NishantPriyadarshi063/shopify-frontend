@@ -5,7 +5,7 @@ export function getApiBase(): string {
   return process.env.NEXT_PUBLIC_API_URL || "http://localhost:5300";
 }
 
-export type HelpRequestType = 'cancel' | 'return' | 'refund';
+export type HelpRequestType = 'cancel' | 'return' | 'refund' | 'exchange';
 
 export interface CreateHelpRequestBody {
   type: HelpRequestType;

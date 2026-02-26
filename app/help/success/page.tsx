@@ -9,8 +9,9 @@ import { Chat } from "@/components/chat/Chat";
 
 const typeLabels: Record<string, string> = {
   cancel: "Cancel order",
-  return: "Return order / Exchange",
-  refund: "Request refund",
+  return: "Return order",
+  exchange: "Exchange",
+  refund: "Refund",
 };
 
 function SuccessContent() {

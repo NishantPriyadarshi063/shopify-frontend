@@ -327,8 +327,8 @@ export default function AdminRequestDetailPage() {
                     </a>
                   )}
 
-                  {/* Shopify-like flow */}
-                  {request.type === "return" && request.status === "pending" && (
+                  {/* Shopify-like flow: return and exchange both get Return then Refund */}
+                  {(request.type === "return" || request.type === "exchange") && request.status === "pending" && (
                     <Button
                       size="sm"
                       onClick={markReturnInitiated}
@@ -341,7 +341,7 @@ export default function AdminRequestDetailPage() {
                   {/* Refund button appears AFTER Return is initiated, like Shopify */}
                   {request.status !== "completed" && request.status !== "rejected" &&
                     (request.type === "refund" ||
-                      (request.type === "return" && (request.status === "in_progress" || request.status === "approved"))) && (
+                      ((request.type === "return" || request.type === "exchange") && (request.status === "in_progress" || request.status === "approved"))) && (
                     <Button
                       size="sm"
                       onClick={openRefundModal}

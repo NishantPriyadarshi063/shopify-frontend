@@ -7,25 +7,11 @@ import { FAQ } from "@/components/help/FAQ";
 
 const options = [
   {
-    type: "cancel" as const,
-    title: "Cancel order",
-    description: "Cancel an order that hasn’t shipped yet. We’ll process it quickly.",
-    href: "/help/cancel",
-    icon: "✕",
-  },
-  {
-    type: "return" as const,
-    title: "Return order / Exchange",
-    description: "Return a product or exchange for a different one. Add a photo so we can check the condition.",
-    href: "/help/return",
+    type: "request" as const,
+    title: "Return order / Exchange / Refund / Cancel",
+    description: "Return a product, exchange for another, request a refund, or cancel an order. Choose your request type in the form.",
+    href: "/help/return-refund",
     icon: "↩",
-  },
-  {
-    type: "refund" as const,
-    title: "Request refund",
-    description: "Request a refund. Share details and optional photos if needed.",
-    href: "/help/refund",
-    icon: "₹",
   },
   {
     type: "status" as const,

@@ -201,6 +201,7 @@ export default function AdminPage() {
               <option value="">All</option>
               <option value="cancel">Cancel</option>
               <option value="return">Return</option>
+              <option value="exchange">Exchange</option>
               <option value="refund">Refund</option>
             </select>
           </label>
