@@ -4,33 +4,27 @@ import Link from "next/link";
 import Image from "next/image";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
-const LOGO_SRC = "/assets/th logo-01.png";
+const LOGO_SRC = "/assets/th logo-01.jpg";
 const SHOP_URL = "https://www.tiltingheads.com/";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-10 border-b border-[var(--border)] bg-[var(--card)]/95 backdrop-blur supports-[backdrop-filter]:bg-[var(--card)]/80">
-      <div className="mx-auto flex h-16 max-w-3xl items-center justify-between px-4 sm:px-6">
+    <header className="sticky top-0 z-10 w-full border-b border-[var(--border)] bg-[var(--card)]/95 backdrop-blur supports-[backdrop-filter]:bg-[var(--card)]/80">
+      <div className="flex h-16 w-full items-center justify-between px-4 sm:px-6">
         <Link
           href="/"
-          className="flex items-center gap-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent)] focus-visible:outline-offset-2 rounded"
+          className="flex shrink-0 items-center gap-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent)] focus-visible:outline-offset-2 rounded"
         >
           <Image
             src={LOGO_SRC}
             alt="Tilting Heads"
-            width={120}
-            height={40}
-            className="h-8 w-auto object-contain logo-invert"
+            width={200}
+            height={80}
+            className="h-12 w-auto object-contain logo-invert sm:h-14"
             priority
           />
         </Link>
-        <nav className="flex items-center gap-3">
-          <Link
-            href="/admin"
-            className="text-sm font-medium text-[var(--muted)] hover:text-[var(--foreground)] transition-colors hidden sm:inline"
-          >
-            Admin
-          </Link>
+        <nav className="ml-auto flex items-center gap-3">
           <ThemeToggle />
           <a
             href={SHOP_URL}
