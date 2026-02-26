@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { Suspense, useState, useMemo } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
@@ -20,7 +20,7 @@ const QUERY_TYPES: { value: HelpRequestType; label: string }[] = [
   { value: "cancel", label: "Cancel order" },
 ];
 
-export default function ReturnExchangeRefundPage() {
+function ReturnExchangeRefundForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const typeParam = searchParams.get("type");
@@ -182,5 +182,27 @@ export default function ReturnExchangeRefundPage() {
         </form>
       </motion.div>
     </PageContainer>
+  );
+}
+
+export default function ReturnExchangeRefundPage() {
+  return (
+    <Suspense
+      fallback={
+        <PageContainer>
+          <Breadcrumb
+            items={[
+              { href: "/", label: "Help" },
+              { label: "Return order / Exchange / Refund / Cancel" },
+            ]}
+          />
+          <div className="mt-8 animate-pulse rounded-xl border border-[var(--border)] bg-[var(--card)] p-8 text-center text-[var(--muted)]">
+            Loading…
+          </div>
+        </PageContainer>
+      }
+    >
+      <ReturnExchangeRefundForm />
+    </Suspense>
   );
 }
